@@ -42,6 +42,15 @@ async function convertIconData(svg, multiColor) {
             break;
           case "pId":
             break;
+          case "style":
+            obj[newName] = attribs[name]
+              .split(/\s*;\s*/)
+              .map((e) => e.split(/\s*:\s*/))
+              .reduce((curr, acc) => {
+                curr[acc[0]] = acc[1];
+                return curr;
+              }, {});
+            break;
           default:
             obj[newName] = attribs[name];
             break;
