@@ -1,4 +1,5 @@
 const path = require("path");
+const camelcase = require("camelcase");
 
 module.exports = {
   icons: [
@@ -62,9 +63,57 @@ module.exports = {
         {
           files: path.resolve(
             __dirname,
-            "material-design-icons/*/svg/production/*_24px.svg"
+            "material-design-icons/src/*/*/materialicons/24px.svg"
           ),
-          formatter: (name) => name.replace(/Ic(\w+)24px/i, "Md$1"),
+          formatter: (name, pathname) =>
+            pathname.replace(
+              /^.*\/(\w+)\/materialicons\/.*$/i,
+              (_, n) => `Md${camelcase(n, { pascalCase: true })}`
+            ),
+        },
+        {
+          files: path.resolve(
+            __dirname,
+            "material-design-icons/src/*/*/materialiconsoutlined/24px.svg"
+          ),
+          formatter: (name, pathname) =>
+            pathname.replace(
+              /^.*\/(\w+)\/materialiconsoutlined\/.*$/i,
+              (_, n) => `MdOutlined${camelcase(n, { pascalCase: true })}`
+            ),
+        },
+        {
+          files: path.resolve(
+            __dirname,
+            "material-design-icons/src/*/*/materialiconsround/24px.svg"
+          ),
+          formatter: (name, pathname) =>
+            pathname.replace(
+              /^.*\/(\w+)\/materialiconsround\/.*$/i,
+              (_, n) => `MdRounded${camelcase(n, { pascalCase: true })}`
+            ),
+        },
+        {
+          files: path.resolve(
+            __dirname,
+            "material-design-icons/src/*/*/materialiconssharp/24px.svg"
+          ),
+          formatter: (name, pathname) =>
+            pathname.replace(
+              /^.*\/(\w+)\/materialiconssharp\/.*$/i,
+              (_, n) => `MdSharp${camelcase(n, { pascalCase: true })}`
+            ),
+        },
+        {
+          files: path.resolve(
+            __dirname,
+            "material-design-icons/src/*/*/materialiconstwotone/24px.svg"
+          ),
+          formatter: (name, pathname) =>
+            pathname.replace(
+              /^.*\/(\w+)\/materialiconstwotone\/.*$/i,
+              (_, n) => `MdTwoTone${camelcase(n, { pascalCase: true })}`
+            ),
         },
       ],
       projectUrl: "http://google.github.io/material-design-icons/",
